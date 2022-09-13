@@ -1,2 +1,15 @@
 ---
 # tasks file for docker
+- name: Install docker
+  yum:
+    name: docker
+    state: present
+  when: ansible_distribution == "CentOS"
+  
+
+- name: Create a data container
+  docker_container:
+    name: redis
+    image: redis
+    volumes:
+      - /data    
